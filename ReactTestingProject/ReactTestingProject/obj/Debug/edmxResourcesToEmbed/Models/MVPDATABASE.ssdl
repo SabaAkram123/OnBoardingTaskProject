@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ONBORADING_TASK_DemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customer_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Product_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Price" Type="int" />
+  </EntityType>
+  <EntityType Name="Sales_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="StoreId" Type="int" />
+    <Property Name="DateSold" Type="date" />
+  </EntityType>
+  <EntityType Name="Store_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Sales_Tab__Custo__2D27B809">
+    <End Role="Customer_Table" Type="Self.Customer_Table" Multiplicity="0..1" />
+    <End Role="Sales_Table" Type="Self.Sales_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer_Table">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales_Table">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales_Tab__Produ__2E1BDC42">
+    <End Role="Product_Table" Type="Self.Product_Table" Multiplicity="0..1" />
+    <End Role="Sales_Table" Type="Self.Sales_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Table">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales_Table">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales_Tab__Store__2F10007B">
+    <End Role="Store_Table" Type="Self.Store_Table" Multiplicity="0..1" />
+    <End Role="Sales_Table" Type="Self.Sales_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store_Table">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales_Table">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ONBORADING_TASK_DemoModelStoreContainer">
+    <EntitySet Name="Customer_Table" EntityType="Self.Customer_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Table" EntityType="Self.Product_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sales_Table" EntityType="Self.Sales_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store_Table" EntityType="Self.Store_Table" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Sales_Tab__Custo__2D27B809" Association="Self.FK__Sales_Tab__Custo__2D27B809">
+      <End Role="Customer_Table" EntitySet="Customer_Table" />
+      <End Role="Sales_Table" EntitySet="Sales_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales_Tab__Produ__2E1BDC42" Association="Self.FK__Sales_Tab__Produ__2E1BDC42">
+      <End Role="Product_Table" EntitySet="Product_Table" />
+      <End Role="Sales_Table" EntitySet="Sales_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales_Tab__Store__2F10007B" Association="Self.FK__Sales_Tab__Store__2F10007B">
+      <End Role="Store_Table" EntitySet="Store_Table" />
+      <End Role="Sales_Table" EntitySet="Sales_Table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

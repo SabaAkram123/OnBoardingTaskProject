@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ONBORADING_TASK_DemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Customer_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Sales_Table" Relationship="Self.FK__Sales_Tab__Custo__2D27B809" FromRole="Customer_Table" ToRole="Sales_Table" />
+  </EntityType>
+  <EntityType Name="Product_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Int32" />
+    <NavigationProperty Name="Sales_Table" Relationship="Self.FK__Sales_Tab__Produ__2E1BDC42" FromRole="Product_Table" ToRole="Sales_Table" />
+  </EntityType>
+  <EntityType Name="Sales_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="StoreId" Type="Int32" />
+    <Property Name="DateSold" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Customer_Table" Relationship="Self.FK__Sales_Tab__Custo__2D27B809" FromRole="Sales_Table" ToRole="Customer_Table" />
+    <NavigationProperty Name="Product_Table" Relationship="Self.FK__Sales_Tab__Produ__2E1BDC42" FromRole="Sales_Table" ToRole="Product_Table" />
+    <NavigationProperty Name="Store_Table" Relationship="Self.FK__Sales_Tab__Store__2F10007B" FromRole="Sales_Table" ToRole="Store_Table" />
+  </EntityType>
+  <EntityType Name="Store_Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Sales_Table" Relationship="Self.FK__Sales_Tab__Store__2F10007B" FromRole="Store_Table" ToRole="Sales_Table" />
+  </EntityType>
+  <Association Name="FK__Sales_Tab__Custo__2D27B809">
+    <End Role="Customer_Table" Type="Self.Customer_Table" Multiplicity="0..1" />
+    <End Role="Sales_Table" Type="Self.Sales_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer_Table">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales_Table">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales_Tab__Produ__2E1BDC42">
+    <End Role="Product_Table" Type="Self.Product_Table" Multiplicity="0..1" />
+    <End Role="Sales_Table" Type="Self.Sales_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Table">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales_Table">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sales_Tab__Store__2F10007B">
+    <End Role="Store_Table" Type="Self.Store_Table" Multiplicity="0..1" />
+    <End Role="Sales_Table" Type="Self.Sales_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store_Table">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sales_Table">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ONBORADING_TASK_DemoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customer_Table" EntityType="Self.Customer_Table" />
+    <EntitySet Name="Product_Table" EntityType="Self.Product_Table" />
+    <EntitySet Name="Sales_Table" EntityType="Self.Sales_Table" />
+    <EntitySet Name="Store_Table" EntityType="Self.Store_Table" />
+    <AssociationSet Name="FK__Sales_Tab__Custo__2D27B809" Association="Self.FK__Sales_Tab__Custo__2D27B809">
+      <End Role="Customer_Table" EntitySet="Customer_Table" />
+      <End Role="Sales_Table" EntitySet="Sales_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales_Tab__Produ__2E1BDC42" Association="Self.FK__Sales_Tab__Produ__2E1BDC42">
+      <End Role="Product_Table" EntitySet="Product_Table" />
+      <End Role="Sales_Table" EntitySet="Sales_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sales_Tab__Store__2F10007B" Association="Self.FK__Sales_Tab__Store__2F10007B">
+      <End Role="Store_Table" EntitySet="Store_Table" />
+      <End Role="Sales_Table" EntitySet="Sales_Table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

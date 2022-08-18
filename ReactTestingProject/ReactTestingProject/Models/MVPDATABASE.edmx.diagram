@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3313320ba53b49ec81d2e909d0939891" Name="Diagram1">
+        <EntityTypeShape EntityType="ONBORADING_TASK_DemoModel.Customer_Table" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONBORADING_TASK_DemoModel.Product_Table" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONBORADING_TASK_DemoModel.Sales_Table" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONBORADING_TASK_DemoModel.Store_Table" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="ONBORADING_TASK_DemoModel.FK__Sales_Tab__Custo__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="ONBORADING_TASK_DemoModel.FK__Sales_Tab__Produ__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="ONBORADING_TASK_DemoModel.FK__Sales_Tab__Store__2F10007B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
